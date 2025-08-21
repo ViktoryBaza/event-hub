@@ -104,77 +104,127 @@ Promise.all([
 
     showPage(currentPage);
   }
- 
+
   initPagination(
     ".recommended__card",
     ".recommended__pagination .pagination__prev",
     ".recommended__pagination .pagination__next",
     ".recommended__pagination .pagination__page-numbers",
-    4  
+    4
   );
- 
+
   initPagination(
     ".event-card",
     ".event-pagination .pagination__prev",
     ".event-pagination .pagination__next",
     ".event-pagination .pagination__page-numbers",
+    3
+  );
+  initPagination(
+    ".news-card",
+    ".news-pagination .pagination__prev",
+    ".news-pagination .pagination__next",
+    ".news-pagination .pagination__page-numbers",
     3  
   );
 
-  const calendarEl = document.querySelector("#calendar");
-if (calendarEl) {
-  flatpickr(calendarEl, {
-    inline: true,
-    mode: "range",
-    locale: flatpickr.l10ns.ru,
-    defaultDate: ["2025-08-06"],
+  document.querySelectorAll(".news-card").forEach((card, index) => {
+    const link = card.querySelector(".news-card__link");
+    const desc = card.querySelector(".news-card__description");
 
-    monthSelectorType: "dropdown", 
-    yearSelectorType: "dropdown", 
+    const fullText = document.createElement("p");
+    fullText.className = "news-card__full hidden";
+    fullText.textContent =
+      [
+        "Подробное описание первой новости.",
+        "Подробное описание второй новости.",
+        "Подробное описание третьей новости.",
+      ][index] || "Полный текст новости...";
+    desc.insertAdjacentElement("afterend", fullText);
 
-    onDayCreate: function (dObj, dStr, fp, dayElem) {
-      const date = dayElem.dateObj;
-      const day = date.getDay(); 
-
-      if (day === 0 || day === 6) {
-        dayElem.classList.add("weekend-day");
-      }
-    },
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      fullText.classList.toggle("hidden");
+      link.textContent = fullText.classList.contains("hidden")
+        ? "Читать подробнее"
+        : "Скрыть";
+    });
   });
-}
 
-document.querySelectorAll(".selected-filters").forEach((container) => {
+  const calendarEl = document.querySelector("#calendar");
+  if (calendarEl) {
+    flatpickr(calendarEl, {
+      inline: true,
+      mode: "range",
+      locale: flatpickr.l10ns.ru,
+      defaultDate: ["2025-08-06"],
+
+      monthSelectorType: "dropdown",
+      yearSelectorType: "dropdown",
+
+      onDayCreate: function (dObj, dStr, fp, dayElem) {
+        const date = dayElem.dateObj;
+        const day = date.getDay();
+
+        if (day === 0 || day === 6) {
+          dayElem.classList.add("weekend-day");
+        }
+      },
+    });
+  }
+
+  document.querySelectorAll(".selected-filters").forEach((container) => {
     container.addEventListener("click", (e) => {
       if (e.target.classList.contains("remove")) {
-        e.target.parentElement.remove(); 
+        e.target.parentElement.remove();
       }
     });
-  
+
     container.querySelector(".reset-filters").addEventListener("click", () => {
       container.querySelectorAll(".filter-tag").forEach((tag) => tag.remove());
     });
   });
+  const sortDropdown = document.querySelector(".sort-dropdown");
+  const sortBtn = document.querySelector(".sort-btn");
+
+  if (sortDropdown && sortBtn) {
+    sortBtn.addEventListener("click", () => {
+      sortDropdown.classList.toggle("active");
+    });
+
+    sortDropdown.querySelectorAll(".sort-options li").forEach((option) => {
+      option.addEventListener("click", () => {
+        sortBtn.textContent = option.textContent + " ▾";
+        sortDropdown.classList.remove("active");
+      });
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!sortDropdown.contains(e.target) && e.target !== sortBtn) {
+        sortDropdown.classList.remove("active");
+      }
+    });
+  }
+
   const filtersContainer = document.querySelector(".selected-filters");
-  
+
   filtersContainer.addEventListener("click", function (e) {
     if (e.target.closest(".remove")) {
       const filterTag = e.target.closest(".filter-tag");
       if (filterTag) filterTag.remove();
     }
   });
-  
+
   document.querySelectorAll(".filter-group").forEach((group) => {
     const btn = group.querySelector(".btn-more");
     const options = group.querySelector(".filter-options");
-  
-    if (!btn || !options) return;  
-  
+
+    if (!btn || !options) return;
+
     btn.addEventListener("click", () => {
       const collapsed = options.getAttribute("data-collapsed") === "true";
       options.setAttribute("data-collapsed", collapsed ? "false" : "true");
       btn.textContent = collapsed ? "Скрыть" : "Ещё";
     });
   });
-  
 });
-

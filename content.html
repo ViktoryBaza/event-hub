@@ -194,7 +194,20 @@
           <span class="filter-tag">Выбранный пункт фильтра<span class="remove"><img src="../img/cross-icon.svg" alt="Удалить"></span></span>
           <button class="reset-filters">Сбросить фильтры</button>
         </div>        
-
+        <div class="sort-wrapper">
+        <div class="sort-dropdown">
+          <button class="sort-btn">
+            Сортировать 
+            <img src="../img/icon-dropdown.svg" alt="" class="sort-btn__icon" />
+          </button>
+          <ul class="sort-options">
+            <li data-sort="date-asc">По дате (сначала ближайшие)</li>
+            <li data-sort="date-desc">По дате (сначала поздние)</li>
+            <li data-sort="title-asc">По алфавиту</li>
+            <li data-sort="popular">По популярности</li>
+          </ul>
+        </div>
+      </div>
         <!-- карточки мероприятий -->
         <div class="event-cards">
           <article class="event-card">
@@ -291,4 +304,64 @@
       </div>
     </div>
   </section>
+
+  <section class="news">
+    <div class="news__container">
+      <div class="news__type">
+        <span class="news__type-span type_news">Новости</span>
+        <span class="news__type-span">Авторские статьи</span>
+        <span class="news__type-span">Меры поддержки</span>
+      </div>    
+      <h2 class="news__title">Новости</h2>
+  
+      <div class="news__cards">
+        <article class="news-card">
+          <div class="news-card__image"></div>
+          <div class="news-card__content">
+            <h3 class="news-card__title">Заголовок</h3>
+            <p class="news-card__description">Краткое описание</p>
+            <a href="#" class="news-card__link">Читать подробнее</a>
+          </div>
+        </article>
+  
+        <article class="news-card">
+          <div class="news-card__image"></div>
+          <div class="news-card__content">
+            <h3 class="news-card__title">Заголовок</h3>
+            <p class="news-card__description">Краткое описание</p>
+            <a href="#" class="news-card__link">Читать подробнее</a>
+          </div>
+        </article>
+
+        <article class="news-card">
+          <div class="news-card__image"></div>
+          <div class="news-card__content">
+            <h3 class="news-card__title">Заголовок</h3>
+            <p class="news-card__description">Краткое описание</p>
+            <a href="#" class="news-card__link">Читать подробнее</a>
+          </div>
+        </article>
+  
+        <article class="news-card">
+          <div class="news-card__image"></div>
+          <div class="news-card__content">
+            <h3 class="news-card__title">Заголовок</h3>
+            <p class="news-card__description">Краткое описание</p>
+            <a href="#" class="news-card__link">Читать подробнее</a>
+          </div>
+        </article>
+      </div>
+  
+      <nav class="pagination news-pagination">
+        <button class="pagination__prev">
+          <img src="../img/arrow-left.svg" alt="Предыдущее" />
+        </button>
+        <span class="pagination__page-numbers"></span>
+        <button class="pagination__next">
+          <img src="../img/arrow-right.svg" alt="Следующее" />
+        </button>
+      </nav>
+    </div>
+  </section>
+  
 </body>
