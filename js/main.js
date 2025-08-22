@@ -125,7 +125,7 @@ Promise.all([
     ".news-pagination .pagination__prev",
     ".news-pagination .pagination__next",
     ".news-pagination .pagination__page-numbers",
-    3  
+    3
   );
 
   document.querySelectorAll(".news-card").forEach((card, index) => {
@@ -150,28 +150,50 @@ Promise.all([
         : "Скрыть";
     });
   });
-
   const calendarEl = document.querySelector("#calendar");
+  const calendarBtn = document.querySelector("#calendarBtn");
+
   if (calendarEl) {
-    flatpickr(calendarEl, {
-      inline: true,
+    let isMobile = window.innerWidth <= 900;
+
+    const fp = flatpickr(calendarEl, {
+      inline: !isMobile,
       mode: "range",
       locale: flatpickr.l10ns.ru,
       defaultDate: ["2025-08-06"],
-
       monthSelectorType: "dropdown",
       yearSelectorType: "dropdown",
-
+      clickOpens: false, 
       onDayCreate: function (dObj, dStr, fp, dayElem) {
         const date = dayElem.dateObj;
         const day = date.getDay();
-
         if (day === 0 || day === 6) {
           dayElem.classList.add("weekend-day");
         }
       },
+      onChange: function (selectedDates, dateStr, instance) {
+      },
     });
+
+    if (isMobile && calendarBtn) {
+      calendarBtn.style.display = "inline-block";
+
+      calendarBtn.addEventListener("click", () => {
+        if (fp.isOpen) {
+          fp.close();
+        } else {
+          fp.open();
+        }
+      });
+    }
   }
+
+  const burger = document.querySelector(".header__burger");
+  const menu = document.querySelector(".nav__menu");
+
+  burger.addEventListener("click", () => {
+    menu.classList.toggle("active");
+  });
 
   document.querySelectorAll(".selected-filters").forEach((container) => {
     container.addEventListener("click", (e) => {
