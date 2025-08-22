@@ -13,7 +13,6 @@ main {
 h1 {
     font-size: 2em;
     margin: 0.67em 0;
-
 }
 
 hr {
@@ -30,6 +29,20 @@ pre {
 a {
     background-color: transparent;
     text-decoration: none;
+    color: inherit;
+}
+a:visited {
+    color: inherit;
+}
+
+a:hover,
+a:focus {
+    color: #242424;
+    text-decoration: underline;
+}
+
+a:active {
+    color: #000;
 }
 
 abbr[title] {
@@ -54,7 +67,7 @@ input,
 optgroup,
 select,
 textarea {
-    font-family: inherit; /* наследуем шрифт */
+    font-family: inherit;
     font-size: 100%;
     line-height: 1.15;
     margin: 0;
@@ -62,13 +75,11 @@ textarea {
 
 button,
 input {
-    /* исправляем нестандартные стили кнопок */
     overflow: visible;
 }
 
 button,
 select {
-    /* исправляем IE */
     text-transform: none;
 }
 
@@ -113,7 +124,7 @@ textarea {
 
 [type="checkbox"],
 [type="radio"] {
-    box-sizing: border-box; /* исправляем IE и Safari */
+    box-sizing: border-box;
     padding: 0;
 }
 
@@ -126,7 +137,6 @@ img {
     border-style: none;
 }
 
-/* Сбрасываем списки */
 ol,
 ul {
     list-style: none;

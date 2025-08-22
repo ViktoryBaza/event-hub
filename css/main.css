@@ -806,6 +806,10 @@
     .tags-cloud {
         margin-top: 20px;
     }
+    .sort-options {
+        left: 10px;
+        width: 170px;
+    }
 }
 /* news */
 .news {
