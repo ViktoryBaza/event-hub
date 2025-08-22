@@ -1,11 +1,8 @@
-/* normalize.css — минимальная версия для современного проекта */
-
-/* Убираем различия margin и padding у всех элементов */
 html {
-    line-height: 1.15; /* исправляем баги с межстрочным расстоянием */
-    -webkit-text-size-adjust: 100%; /* предотвращаем изменение размера текста на iOS */
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%; 
 }
-/* Общие элементы */
+
 main {
     display: block;
 }
@@ -103,6 +100,16 @@ button:-moz-focusring,
 [type="reset"]:-moz-focusring,
 [type="submit"]:-moz-focusring {
     outline: 1px dotted ButtonText;
+}
+button,
+input[type="button"],
+input[type="submit"] {
+  background: none;  
+  border: none;        
+  color: #242424;        
+  cursor: pointer;        
+  -webkit-appearance: none;  
+  -moz-appearance: none;    
 }
 
 fieldset {
